@@ -4,6 +4,14 @@
   <artifactId>spark</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+   <name>mdicreativesapp</name>
+  <url>http://none</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
   <dependency> <!-- Spark -->
     <groupId>org.apache.spark</groupId>
     <artifactId>spark-core_2.10</artifactId>
@@ -27,6 +35,6 @@
 	<artifactId>hadoop-core</artifactId>
 	<version>1.2.1</version>
 </dependency>
-  
+  </dependencies>
   
 </project>
