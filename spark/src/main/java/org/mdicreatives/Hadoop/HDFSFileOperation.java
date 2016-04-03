@@ -11,7 +11,7 @@ public class HDFSFileOperation {
 	//Class Members
 	
 	public FileSystem hdfs;
-	public Path newfolderpath;
+	//public Path newfolderpath;
 	FsShell shell;
 	
 	//Constructor Start
@@ -33,16 +33,16 @@ public class HDFSFileOperation {
 	
 	
 	//Function Start
-	public String getCurrentDirectory()throws IOException
+	/*public String getCurrentDirectory()throws IOException
 	{
 		return newfolderpath.toString();
-	}//Function End
+	}//Function End */
 	
 	public void setpath(Path newpath)throws IOException
 	{
-		Path homepath = hdfs.getHomeDirectory();
+		Path homepath = hdfs.getWorkingDirectory();
 		System.out.println("Homepath-"+homepath);
-		newfolderpath = Path.mergePaths(homepath,newpath);
+		//newfolderpath = Path.mergePaths(homepath,newpath);
 	}
 	
 	//function start
@@ -67,12 +67,12 @@ public class HDFSFileOperation {
 	}//function end
 	
 	//function start
-	public void copyfilestoHDFS(String filename,String localpath) throws IOException
+	public void copyfilestoHDFS(String filename,String localpath, String hdfspath) throws IOException
 	{
 		
 		
 	      try {
-	        shell.run(new String[]{"-chmod","-R","777",newfolderpath.toString()});
+	        shell.run(new String[]{"-chmod","-R","777",hdfspath});
 	      }
 	     catch (  Exception e) {
 	        System.out.println("Couldnt change the file permissions ");
@@ -81,10 +81,10 @@ public class HDFSFileOperation {
 		Path localFilePath = new Path(localpath+ "/"+ filename);
 		System.out.println(localFilePath);
 
-		Path hdfsFilePath= new Path(newfolderpath.toString()+"/"+ filename);
-		System.out.println(hdfsFilePath);
+		//Path hdfsFilePath= new Path(newfolderpath.toString()+"/"+ filename);
+		//System.out.println(hdfsFilePath);
 
-		hdfs.copyFromLocalFile(localFilePath, hdfsFilePath);
+		hdfs.copyFromLocalFile(localFilePath,new Path(hdfspath));
 		
 
 		System.out.println("File copied from local to HDFS.");
